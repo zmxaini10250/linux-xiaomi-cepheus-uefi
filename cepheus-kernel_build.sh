@@ -24,6 +24,14 @@ git -C linux rev-parse --short HEAD > kernel-commit.txt
 git -C linux log --pretty=format:'- %s (%h)' -20 > kernel-commits.txt
 
 patch linux/scripts/package/builddeb < builddeb.patch
+
+# 为 WCN3998 蓝牙注入 local-bd-address：缺少该属性时控制器会以 unconfigured
+# 状态注册，BlueZ 看不到 hci0，hciconfig hci0 up 返回 EOPNOTSUPP。
+# 若上游已合入或补丁已应用过，patch 返回非 0，打印提示后继续构建。
+if ! patch -N -r - -d linux -p1 < sm8150-xiaomi-cepheus-bt-bdaddr.patch; then
+  echo "提示: local-bd-address 补丁未应用（可能上游已修复或已应用），继续构建"
+fi
+
 cd linux
 git add .
 # 用内联身份提交，避免 CI runner 未配置 git user 时报 "empty ident name"
