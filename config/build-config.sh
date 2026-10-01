@@ -69,13 +69,13 @@ language-pack-zh-hans dnsmasq iptables iproute2 v4l-utils"
       echo "$base_packages gnome-core gdm3"
       ;;
     "phosh-core")
-      echo "$base_packages phosh-core"
+      echo "$base_packages gdm3 phosh-core"
       ;;
     "phosh-full")
-      echo "$base_packages phosh"
+      echo "$base_packages gdm3 phosh"
       ;;
     "phosh-phone")
-      echo "$base_packages phosh phosh-mobile-tweaks"
+      echo "$base_packages gdm3 phosh phosh-mobile-tweaks"
       ;;
     *)
       echo "$base_packages"
