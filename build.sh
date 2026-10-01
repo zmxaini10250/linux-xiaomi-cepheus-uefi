@@ -99,6 +99,7 @@ log "========================================== 🚀 开始构建 ==============
 "$SCRIPT_DIR/scripts/11-config-fstab.sh"
 "$SCRIPT_DIR/scripts/12-create-users.sh"
 "$SCRIPT_DIR/scripts/13-config-efi.sh"
+"$SCRIPT_DIR/scripts/13b-config-default-target.sh"
 "$SCRIPT_DIR/scripts/14-config-power.sh"
 "$SCRIPT_DIR/scripts/15-cleanup.sh"
 "$SCRIPT_DIR/scripts/16-finalize.sh"
