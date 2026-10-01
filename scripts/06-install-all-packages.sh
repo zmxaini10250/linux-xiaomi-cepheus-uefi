@@ -7,6 +7,7 @@ CONFIG_DIR="$SCRIPT_DIR/../config"
 . "$CONFIG_DIR/build-config.sh"
 
 SYSTEM_TYPE="${SYSTEM_TYPE:-ubuntu-server}"
+IS_DESKTOP="${IS_DESKTOP:-false}"
 DESKTOP_ENV="${DESKTOP_ENV:-}"
 UBUNTU_VERSION="${UBUNTU_VERSION:-noble}"
 APT_RETRIES="${APT_RETRIES:-3}"
@@ -41,7 +42,7 @@ log "  └─ 开始安装（这可能需要几分钟...）"
 chroot rootdir apt-get "${apt_options[@]}" install -y "${package_list[@]}"
 
 # 桌面版 GNOME 自动登录
-if [ "$DESKTOP_ENV" = "gnome" ]; then
+if [ "$IS_DESKTOP" = "true" ]; then
     log "  └─ 配置 GDM 自动登录"
     mkdir -p rootdir/etc/gdm3
     cat > rootdir/etc/gdm3/custom.conf << 'EOF'
